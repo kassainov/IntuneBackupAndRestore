@@ -24,7 +24,6 @@ function Invoke-IntuneBackupConfigurationPolicyAssignment {
     )
 
     # Set the Microsoft Graph API endpoint
-    Select-MgProfile -Name $ApiVersion
     $url = "https://graph.microsoft.com/$ApiVersion"
 
     # Create folder if not exists
@@ -33,7 +32,7 @@ function Invoke-IntuneBackupConfigurationPolicyAssignment {
     }
 
     # Get all assignments from all policies
-    $configurationPolicies = Get-MgDeviceManagementConfigurationPolicy -All 
+    $configurationPolicies = Get-MgBetaDeviceManagementConfigurationPolicy -All 
 
     foreach ($configurationPolicy in $configurationPolicies) {
         $assignments = Invoke-GraphRequest -Method GET -Uri "$url/deviceManagement/configurationPolicies/$($configurationPolicy.id)/assignments"-OutputType JSON | ConvertFrom-Json

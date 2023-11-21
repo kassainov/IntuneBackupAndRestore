@@ -24,7 +24,6 @@ function Invoke-IntuneBackupAppProtectionPolicy {
     )
 
     # Set the Microsoft Graph API endpoint
-    Select-MgProfile -Name $ApiVersion
     $url = "https://graph.microsoft.com/$ApiVersion"
 
     # Create folder if not exists

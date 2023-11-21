@@ -22,7 +22,6 @@ function Invoke-IntuneBackupClientApp {
         [ValidateSet("v1.0", "Beta")]
         [string]$ApiVersion = "Beta"
     )
-    Select-MgProfile -Name $ApiVersion
     $url = "https://graph.microsoft.com/$ApiVersion"
 
     # Create folder if not exists
@@ -31,7 +30,7 @@ function Invoke-IntuneBackupClientApp {
     }
 
     # Get all Client Apps
-    $clientApps = Get-MgDeviceAppManagementMobileApp -All
+    $clientApps = Get-MgBetaDeviceAppManagementMobileApp -All
         
     foreach ($clientApp in $clientApps) {
         $clientAppType = $ClientApp.AdditionalProperties.'@odata.type'.split('.')[-1]
